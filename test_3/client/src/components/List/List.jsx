@@ -3,12 +3,12 @@ import ListItem from '../ListItem/ListItem';
 
 import './List.css';
 
-const List = ({ todos, setTodos, searchTodo }) => {
+const List = ({ todos, setTodos }) => {
   //Реализация пагинации
   const [currentPage, setCurrentPage] = useState(1);
-  const [flightsPerPage] = useState(2);
-  const lastFlightIndex = currentPage * flightsPerPage;
-  const currentFlight = searchTodo.slice(0, lastFlightIndex);
+  const [todosPerPage] = useState(6);
+  const lasTodoIndex = currentPage * todosPerPage;
+  const currentFlight = todos.slice(0, lasTodoIndex);
 
   const nextPage = () => setCurrentPage((prev) => prev + 1);
   return (
@@ -29,7 +29,11 @@ const List = ({ todos, setTodos, searchTodo }) => {
           />
         );
       })}
-      <button onClick={nextPage}>Показать ещё</button>
+      {currentFlight.length === todos.length ? (
+        ''
+      ) : (
+        <button onClick={nextPage}>Показать ещё</button>
+      )}
     </div>
   );
 };
