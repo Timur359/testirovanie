@@ -3,18 +3,18 @@ import ListItem from '../ListItem/ListItem';
 
 import './List.css';
 
-const List = ({ todos, setTodos }) => {
+const List = ({ todos, setTodos, handleSortDate, handleSelectCategory }) => {
   //Реализация пагинации
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(6);
   const lasTodoIndex = currentPage * todosPerPage;
-  const currentFlight = todos.slice(0, lasTodoIndex);
+  const currentTodo = todos.slice(0, lasTodoIndex);
 
   const nextPage = () => setCurrentPage((prev) => prev + 1);
   return (
     <div className="list">
-      <p>Инфо</p>
-      {currentFlight.map((todo) => {
+      <button onClick={handleSortDate}>Сортировать по дате</button>
+      {currentTodo.map((todo) => {
         return (
           <ListItem
             todos={todos}
@@ -29,7 +29,7 @@ const List = ({ todos, setTodos }) => {
           />
         );
       })}
-      {currentFlight.length === todos.length ? (
+      {currentTodo.length === todos.length ? (
         ''
       ) : (
         <button onClick={nextPage}>Показать ещё</button>

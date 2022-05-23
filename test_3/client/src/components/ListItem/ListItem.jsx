@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Popup from '../Popup/Popup';
 
 import './ListItem.css';
 import compl from '../../image/Compl.svg';
 import nocompl from '../../image/NoCompl.svg';
+import { base_url } from '../Main/Main';
 
 const ListItem = ({
   name,
@@ -20,13 +21,13 @@ const ListItem = ({
 
   const handleCompleted = () => {
     axios
-      .put('http://localhost:8080/api/todos', {
+      .put(base_url, {
         id: id,
         perfomance: !perfomance,
       })
-      .then((res) => {
-        setTodos(todos.map((todo) => (todo.id === res.id ? res : todo)));
-      })
+      .then((res) =>
+        setTodos(todos.map((todo) => (todo.id === res.id ? res : todo)))
+      )
       .catch((err) => console.error(err));
     setIsCompleted(!isCompleted);
   };

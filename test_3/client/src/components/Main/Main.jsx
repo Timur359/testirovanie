@@ -7,6 +7,8 @@ import NavBar from '../NavBar/NavBar';
 
 import './Main.css';
 
+export const base_url = 'http://localhost:8080/api/todos';
+
 const Main = () => {
   const [todos, setTodos] = useState([]);
   const [inputSearch, setInputSearch] = useState('');
@@ -15,15 +17,14 @@ const Main = () => {
   const [list, setList] = useState([]);
   const [todayTodo, setTodayTodo] = useState(false);
   const [date, setDate] = useState('');
+  const [sortDate, setSortDate] = useState(false);
 
   //Получение данных
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(
-          'http://localhost:8080/api/todos'
-        );
+        const { data: response } = await axios.get(base_url);
         setTodos(response);
       } catch (error) {
         console.error(error.message);
@@ -33,13 +34,25 @@ const Main = () => {
     fetchData();
   }, []);
 
+  //Сортировка списка по дате (от меньшего к большему)
+
+  const handleSortDate = () => {
+    setSortDate(!sortDate);
+  };
+
+  //Слушатель чекбокса "Только невыполненные"
+
   const handleSelectCategory = () => {
     setSelectCategory(!selectCategory);
   };
 
+  //Слушатель кнопки на сегодня
+
   const handleTodayTodo = () => {
     setTodayTodo(!todayTodo);
   };
+
+  //Слушатель выбранной даты
 
   const handleSelectDate = () => {
     setSelectDate(!selectDate);
@@ -54,7 +67,6 @@ const Main = () => {
 
     if (selectCategory) {
       updateList = updateList.filter((todo) => todo.perfomance === false);
-      console.log(selectCategory);
     }
 
     //Работа поиска дел
@@ -96,12 +108,28 @@ const Main = () => {
         return all1 === all2;
       });
     }
+
+    //Сортировка дат (срабатывает после ререндера. В процессе исправления)
+    if (sortDate) {
+      updateList = updateList.sort(
+        (a, b) => new Date(a.date) - new Date(b.date)
+      );
+      console.log(updateList);
+    }
     setList(updateList);
   };
 
   useEffect(() => {
     applyFilters();
-  }, [selectCategory, inputSearch, todayTodo, selectDate, date, todos]);
+  }, [
+    sortDate,
+    selectCategory,
+    inputSearch,
+    todayTodo,
+    selectDate,
+    date,
+    todos,
+  ]);
 
   return (
     <div className="main">
@@ -115,7 +143,11 @@ const Main = () => {
         handleSelectDate={handleSelectDate}
       />
       {list.length > 0 ? (
-        <List todos={list} setTodos={setTodos} />
+        <List
+          todos={list}
+          setTodos={setTodos}
+          handleSortDate={handleSortDate}
+        />
       ) : (
         <h1>По данным параметрам ничего не найдено</h1>
       )}

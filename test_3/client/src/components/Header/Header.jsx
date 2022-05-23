@@ -7,7 +7,6 @@ import search from '../../image/Search.svg';
 
 const Header = ({ inputSearch, setInputSearch }) => {
   //Получение данных из инпута
-
   const handleChange = (e) => {
     setInputSearch(e.target.value);
   };
