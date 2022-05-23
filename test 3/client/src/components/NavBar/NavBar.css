@@ -1,0 +1,45 @@
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding-left: 16px;
+    padding-right: 19px;
+    box-sizing: border-box;
+}
+
+.nav-bar__button {
+    background-color: #C4C4C4;
+    margin: 18px 0 14px 0;
+    border: none;
+    height: 34px;
+    cursor: pointer;
+}
+
+.nav-bar__button:last-of-type {
+    margin-bottom: 18px;
+    margin-top: 0;
+}
+
+.nav-bar__button_text {
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 21.78px;
+    margin: 0;
+}
+
+.nav-bar__checkbox {
+    display: flex;
+    margin: 23px 38px auto 0;
+}
+
+.nav-bar__checkbox_checkbox {
+    margin: 0;
+    margin-right: 3px;
+}
+
+.nav-bar__checkbox_text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 12.1px;
+    margin: 0;
+}

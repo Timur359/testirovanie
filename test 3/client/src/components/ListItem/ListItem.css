@@ -1,0 +1,40 @@
+.list-item {
+    display: flex;
+    background-color: #D2D2D2;
+    width: 90%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px 13px 13px 26px;
+}
+
+.list-item__title {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21.78px;
+    margin: 5px 8px 8px 8px;
+    width: 100%;
+    text-align: start;
+}
+
+.list-item__paragraph {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.36px;
+    margin: 0 20px 29px 8px;
+    width: 400px;
+    text-align: start;
+}
+
+.list-item__status {
+    background-size: 35px 35px;
+    margin-right: 5px;
+}
+
+.list-item__date {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12.1px;
+    width: 100%;
+    text-align: end;
+    padding-right: 4px;
+}
