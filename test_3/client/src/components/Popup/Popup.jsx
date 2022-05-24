@@ -14,9 +14,11 @@ const Popup = ({
   isCompleted,
 }) => {
   return (
-    <div className={`popup ${isOpen ? 'popup__open' : ''}`}>
-      <button onClick={handleClosePopup}>Закрыть</button>
-      <div className="popup__box">
+    <div
+      onClick={handleClosePopup}
+      className={`popup ${isOpen ? 'popup__open' : ''}`}
+    >
+      <div onClick={(e) => e.stopPropagation()} className="popup__box">
         <div className="popup__box-info">
           <h2 className="popup__title">{name}</h2>
           <span className="popup__date">{date}</span>

@@ -35,7 +35,6 @@ const ListItem = ({
   const handleClosePopup = () => {
     setIsOpen(!isOpen);
   };
-
   return (
     <>
       <div className="list-item">
