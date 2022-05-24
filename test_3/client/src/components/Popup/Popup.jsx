@@ -23,7 +23,9 @@ const Popup = ({
         className={isOpen ? 'popup__box isOpen' : 'popup__box'}
       >
         <div className="popup__box-info">
-          <h2 className="popup__title">{name}</h2>
+          <h2 className="popup__title" maxLength="10">
+            {`${name.substring(0, 10)}...`}
+          </h2>
           <span className="popup__date">{date}</span>
         </div>
         <img
