@@ -13,11 +13,6 @@ class TodoController {
     );
     res.json(newTodo.rows[0]);
   }
-  async getOneUser(req, res) {
-    const id = req.params.id;
-    const user = await db.query('SELECT * FROM person where id = $1', [id]);
-    res.json(user.rows[0]);
-  }
   async updateTodo(req, res) {
     const { id, perfomance } = req.body;
     const todo = await db.query(
@@ -26,10 +21,16 @@ class TodoController {
     );
     res.json(todo.rows[0]);
   }
-  async deleteUser(req, res) {
-    const id = req.params.id;
-    const user = await db.query('DELETE FROM person where id = $1', [id]);
-    res.json(user.rows[0]);
+  async deleteTodo(req, res) {
+    //const { id } = req.body;
+    //const todo = await db.query('DELETE FROM todoItem where id = 1', [id]);
+    //console.log(id);
+    const { id } = req.params;
+    const todo = await db.query(
+      'DELETE FROM todoItem where id = $1 RETURNING *',
+      [id]
+    );
+    res.json(todo);
   }
 }
 

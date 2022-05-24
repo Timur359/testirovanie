@@ -2,3 +2,29 @@
     width: 70%;
     background-color: #ECECEC;
 }
+
+.list__title-box {
+    display: flex;
+    align-items: center;
+    margin: 0 13px 0 26px;
+    width: 90%;
+}
+
+.list__title-box_icon {
+    width: 40px;
+    height: 20px;
+    background-size: 40px 20px;
+    background-repeat: no-repeat;
+    margin-right: 15px;
+    margin-left: auto;
+}
+
+.list__title-box_text {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 12.1px;
+}
+
+.list__title-box_text:last-of-type {
+    cursor: pointer;
+}
