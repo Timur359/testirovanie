@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useDebounce } from 'use-debounce';
 import axios from 'axios';
 
 import Header from '../Header/Header';
@@ -18,6 +19,8 @@ const Main = () => {
   const [todayTodo, setTodayTodo] = useState(false);
   const [date, setDate] = useState('');
   const [sortDate, setSortDate] = useState(false);
+
+  const debouncedInputSearch = useDebounce(inputSearch, 500);
 
   //Получение данных
 
@@ -71,7 +74,7 @@ const Main = () => {
 
     //Работа поиска дел
 
-    if (inputSearch) {
+    if (inputSearch && debouncedInputSearch) {
       updateList = updateList.filter((todo) =>
         todo.name.toLowerCase().includes(inputSearch.toLowerCase())
       );
