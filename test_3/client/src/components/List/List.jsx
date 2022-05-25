@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import ListItem from '../ListItem/ListItem';
 
 import './List.css';
 
 import icon from '../../image/Icon.svg';
+import { base_url } from '../Main/Main';
 
-const List = ({ todos, setTodos, handleSortDate, handleSelectCategory }) => {
+const List = ({ todos, setTodos, handleSortDate }) => {
   //Реализация пагинации
   const [currentPage, setCurrentPage] = useState(1);
   const [todosPerPage] = useState(6);
@@ -23,10 +25,27 @@ const List = ({ todos, setTodos, handleSortDate, handleSelectCategory }) => {
         </p>
       </div>
       {currentTodo.map((todo) => {
+        const handleCompleted = async () => {
+          try {
+            const completedTodo = await axios.put(base_url, {
+              id: todo.id,
+              perfomance: !todo.perfomance,
+            });
+            const newTodos = [...todos];
+            newTodos.map((todo) => {
+              if (todo.id === completedTodo.data.id) {
+                todo.perfomance = !todo.perfomance;
+              }
+            });
+            setTodos(newTodos);
+          } catch (err) {
+            console.error(err.message);
+          }
+        };
         return (
           <ListItem
             todos={todos}
-            key={todo.id}
+            key={Math.random()}
             todo={todo}
             name={todo.name}
             description={todo.description}
@@ -34,6 +53,7 @@ const List = ({ todos, setTodos, handleSortDate, handleSelectCategory }) => {
             id={todo.id}
             perfomance={todo.perfomance}
             setTodos={setTodos}
+            handleCompleted={handleCompleted}
           />
         );
       })}

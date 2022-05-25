@@ -143,11 +143,7 @@ const Main = () => {
         handleSelectDate={handleSelectDate}
       />
       {list.length > 0 ? (
-        <List
-          todos={list}
-          setTodos={setTodos}
-          handleSortDate={handleSortDate}
-        />
+        <List todos={list} setTodos={setList} handleSortDate={handleSortDate} />
       ) : (
         <h1>По данным параметрам ничего не найдено</h1>
       )}

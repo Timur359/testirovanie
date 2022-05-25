@@ -22,9 +22,6 @@ class TodoController {
     res.json(todo.rows[0]);
   }
   async deleteTodo(req, res) {
-    //const { id } = req.body;
-    //const todo = await db.query('DELETE FROM todoItem where id = 1', [id]);
-    //console.log(id);
     const { id } = req.params;
     const todo = await db.query(
       'DELETE FROM todoItem where id = $1 RETURNING *',

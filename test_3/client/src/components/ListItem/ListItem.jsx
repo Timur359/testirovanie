@@ -15,23 +15,10 @@ const ListItem = ({
   perfomance,
   todos,
   setTodos,
-  todo,
+  handleCompleted,
 }) => {
   const [isCompleted, setIsCompleted] = useState(perfomance);
   const [isOpen, setIsOpen] = useState(false);
-
-  const handleCompleted = () => {
-    axios
-      .put(base_url, {
-        id: id,
-        perfomance: !perfomance,
-      })
-      .then((res) =>
-        setTodos(todos.map((todo) => (todo.id === res.id ? res : todo)))
-      )
-      .catch((err) => console.error(err.message));
-    setIsCompleted(!isCompleted);
-  };
 
   const handleDeleteToto = async () => {
     try {
@@ -53,13 +40,13 @@ const ListItem = ({
         </h2>
         <button
           className="list-item__delete"
-          onClick={() => handleDeleteToto(id)}
+          onClick={() => handleDeleteToto()}
         />
         <p className="list-item__paragraph">{description}</p>
         <img
-          src={isCompleted ? compl : nocompl}
+          src={perfomance ? compl : nocompl}
           className="list-item__status"
-          onClick={handleCompleted}
+          onClick={() => handleCompleted(id, perfomance)}
           alt="Статус"
         />
         <span className="list-item__date">{date}</span>
@@ -73,6 +60,7 @@ const ListItem = ({
         date={date}
         isCompleted={isCompleted}
         setIsCompleted={setIsCompleted}
+        performance={perfomance}
       />
     </>
   );

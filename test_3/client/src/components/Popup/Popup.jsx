@@ -11,7 +11,7 @@ const Popup = ({
   description,
   date,
   handleCompleted,
-  isCompleted,
+  performance,
 }) => {
   return (
     <div
@@ -29,7 +29,7 @@ const Popup = ({
           <span className="popup__date">{date}</span>
         </div>
         <img
-          src={isCompleted ? compl : nocompl}
+          src={performance ? compl : nocompl}
           className="popup__status"
           onClick={handleCompleted}
           alt="Статус"
