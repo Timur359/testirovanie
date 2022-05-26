@@ -19,6 +19,8 @@ const Main = () => {
   const [todayTodo, setTodayTodo] = useState(false);
   const [date, setDate] = useState('');
   const [sortDate, setSortDate] = useState(false);
+  const [name, setName] = useState('');
+  const [description, setDescription] = useState('');
 
   const debouncedInputSearch = useDebounce(inputSearch, 500);
 
@@ -36,6 +38,20 @@ const Main = () => {
 
     fetchData();
   }, [sortDate]);
+
+  const createTodo = async () => {
+    try {
+      const newTodo = await axios.post(base_url, {
+        name,
+        description,
+        date: new Date(),
+        performance: false,
+      });
+      setTodos([newTodo, ...todos]);
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   //Сортировка списка по дате (от меньшего к большему)
 
@@ -136,7 +152,15 @@ const Main = () => {
 
   return (
     <div className="main">
-      <Header inputSearch={inputSearch} setInputSearch={setInputSearch} />
+      <Header
+        inputSearch={inputSearch}
+        setInputSearch={setInputSearch}
+        createTodo={createTodo}
+        name={name}
+        setName={setName}
+        description={description}
+        setDescription={setDescription}
+      />
       <NavBar
         todos={todos}
         setList={setList}

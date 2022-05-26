@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Header.css';
 
 import avatar from '../../image/Vector.svg';
 import search from '../../image/Search.svg';
+import PopupHeader from '../Popup/PopupHeader/PopupHeader';
 
-const Header = ({ inputSearch, setInputSearch }) => {
+const Header = ({
+  inputSearch,
+  setInputSearch,
+  changePopup,
+  createTodo,
+  name,
+  setName,
+  description,
+  setDescription,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsOpen(!isOpen);
+  };
   //Получение данных из инпута
   const handleChange = (e) => {
     setInputSearch(e.target.value);
@@ -22,7 +37,17 @@ const Header = ({ inputSearch, setInputSearch }) => {
           placeholder="Поиск"
         />
       </div>
+      <button onClick={openPopup}>Создать задачу</button>
       <img src={avatar} className="header__avatar" alt="Аватар" />
+      <PopupHeader
+        isOpen={isOpen}
+        changePopup={openPopup}
+        createTodo={createTodo}
+        name={name}
+        setName={setName}
+        description={description}
+        setDescription={setDescription}
+      />
     </div>
   );
 };

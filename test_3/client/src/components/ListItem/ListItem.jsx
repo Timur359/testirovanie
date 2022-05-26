@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Popup from '../Popup/Popup';
+import Popup from '../Popup/PopupInfo/PopupInfo';
 
 import './ListItem.css';
 import compl from '../../image/Compl.svg';
 import nocompl from '../../image/NoCompl.svg';
 import { base_url } from '../Main/Main';
+import PopupInfo from '../Popup/PopupInfo/PopupInfo';
 
 const ListItem = ({
   name,
@@ -19,6 +20,19 @@ const ListItem = ({
 }) => {
   const [isCompleted, setIsCompleted] = useState(perfomance);
   const [isOpen, setIsOpen] = useState(false);
+
+  let todayDay = new Date(date);
+
+  const getFullDate =
+    todayDay.getDate() +
+    '.' +
+    (todayDay.getMonth() + 1) +
+    '.' +
+    todayDay.getFullYear() +
+    ' ' +
+    todayDay.getHours() +
+    ':' +
+    todayDay.getMinutes();
 
   const handleDeleteToto = async () => {
     try {
@@ -49,10 +63,9 @@ const ListItem = ({
           onClick={() => handleCompleted(id, perfomance)}
           alt="Статус"
         />
-        <span className="list-item__date">{date}</span>
+        <span className="list-item__date">{getFullDate}</span>
       </div>
-      <Popup
-        isOpen={isOpen}
+      <PopupInfo
         handleClosePopup={handleClosePopup}
         handleCompleted={handleCompleted}
         name={name}
@@ -61,6 +74,9 @@ const ListItem = ({
         isCompleted={isCompleted}
         setIsCompleted={setIsCompleted}
         performance={perfomance}
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        getFullDate={getFullDate}
       />
     </>
   );

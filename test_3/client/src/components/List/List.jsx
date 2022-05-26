@@ -19,7 +19,7 @@ const List = ({ todos, setTodos, handleSortDate }) => {
     <div className="list">
       <div className="list__title-box">
         <p className="list__title-box_text">8 мая</p>
-        <img src={icon} className="list__title-box_icon" />
+        <img src={icon} className="list__title-box_icon" alt="Сортировка" />
         <p className="list__title-box_text" onClick={handleSortDate}>
           Сортировать по дате
         </p>
