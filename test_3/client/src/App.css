@@ -20,6 +20,10 @@ body {
     font-family: 'Raleway', sans-serif;
   }
 
+  textarea {
+    font-family: 'Raleway', sans-serif;
+  }
+
   body {
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */

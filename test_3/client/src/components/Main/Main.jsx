@@ -21,6 +21,58 @@ const Main = () => {
   const [sortDate, setSortDate] = useState(false);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
+  const [nameDirty, setNameDirty] = useState(false);
+  const [descriptionDirty, setDescriptionDirty] = useState(false);
+  const [nameError, setNameError] = useState(
+    'Наименование не может быть пустым'
+  );
+  const [descriptionError, setDescriptionError] = useState(
+    'Описание не может быть пустым'
+  );
+  const [formValid, setFormValid] = useState(false);
+
+  useEffect(() => {
+    if (nameError || descriptionError) {
+      setFormValid(false);
+    } else {
+      setFormValid(true);
+    }
+  });
+
+  const nameHandler = (e) => {
+    setName(e.target.value);
+    if (e.target.value.length < 2 || e.target.value.length > 25) {
+      setNameError('Имя не должно быть меньше 2 и длиннее 25');
+      if (!e.target.value) {
+        setNameError('Имя не может быть пустым');
+      }
+    } else {
+      setNameError('');
+    }
+  };
+
+  const descriptionHandler = (e) => {
+    setDescription(e.target.value);
+    if (e.target.value.length < 2 || e.target.value.length > 25) {
+      setDescriptionError('Описание не должно быть меньше 2 и длиннее 25');
+      if (!e.target.value) {
+        setDescriptionError('Описание не может быть пустым');
+      }
+    } else {
+      setDescriptionError('');
+    }
+  };
+
+  const blurHandler = (e) => {
+    switch (e.target.name) {
+      case 'name':
+        setNameDirty(true);
+        break;
+      case 'description':
+        setDescriptionDirty(true);
+        break;
+    }
+  };
 
   const debouncedInputSearch = useDebounce(inputSearch, 500);
 
@@ -39,7 +91,7 @@ const Main = () => {
     fetchData();
   }, [sortDate]);
 
-  const createTodo = async () => {
+  const createTodo = async (e) => {
     try {
       const newTodo = await axios.post(base_url, {
         name,
@@ -160,6 +212,14 @@ const Main = () => {
         setName={setName}
         description={description}
         setDescription={setDescription}
+        blurHandler={blurHandler}
+        nameError={nameError}
+        nameDirty={nameDirty}
+        descriptionError={descriptionError}
+        descriptionDirty={descriptionDirty}
+        formValid={formValid}
+        descriptionHandler={descriptionHandler}
+        nameHandler={nameHandler}
       />
       <NavBar
         todos={todos}

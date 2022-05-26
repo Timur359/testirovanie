@@ -12,42 +12,74 @@ const PopupHeader = ({
   isOpen,
   changePopup,
   createTodo,
+  nameError,
+  nameDirty,
+  descriptionError,
+  descriptionDirty,
+  formValid,
+  blurHandler,
+  descriptionHandler,
+  nameHandler,
 }) => {
-  const handleChangeName = (e) => {
+  /*const handleChangeName = (e) => {
     setName(e.target.value);
   };
 
   const handleChangeDescription = (e) => {
     setDescription(e.target.value);
-  };
+  };*/
   return (
     <Popup isOpen={isOpen} changePopup={changePopup}>
       <form className="popup-header">
-        <div className="popup-input__input-box">
+        <div className="popup-header__input-box">
           <p className="popup-header__input-name">Наименование задачи</p>
           <input
             type="text"
-            className="popup-header__input"
+            name="name"
+            className={`popup-header__input ${
+              nameError ? 'popup-header__input_error' : ''
+            }`}
             value={name}
             onChange={(e) => {
-              handleChangeName(e);
+              nameHandler(e);
             }}
+            onBlur={(e) => blurHandler(e)}
             required
           />
+          <div className="popup-header__error">
+            {nameError && nameDirty && (
+              <span className="popup-header__span">{nameError}</span>
+            )}
+          </div>
         </div>
-        <div className="popup-input__input-box">
+        <div className="popup-header__input-box">
           <p className="popup-header__input-name">Описание задачи</p>
-          <input
+          <textarea
             type="text"
-            className="popup-header__input"
+            name="description"
+            className={`popup-header__input-textarea ${
+              descriptionError ? 'popup-header__input_error' : ''
+            }`}
             value={description}
             onChange={(e) => {
-              handleChangeDescription(e);
+              descriptionHandler(e);
             }}
+            onBlur={(e) => blurHandler(e)}
             required
           />
+          <div className="popup-header__error">
+            {descriptionError && descriptionDirty && (
+              <span className="popup-header__span">{descriptionError}</span>
+            )}
+          </div>
         </div>
-        <button onClick={createTodo} className="popup-header__button">
+        <button
+          onClick={(e) => createTodo(e)}
+          className={
+            formValid ? 'popup-header__button' : 'popup-header__button_disabled'
+          }
+          disabled={!formValid}
+        >
           Создать
         </button>
       </form>

@@ -14,6 +14,14 @@ const Header = ({
   setName,
   description,
   setDescription,
+  blurHandler,
+  nameError,
+  nameDirty,
+  descriptionError,
+  descriptionDirty,
+  formValid,
+  descriptionHandler,
+  nameHandler,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,6 +56,14 @@ const Header = ({
         setName={setName}
         description={description}
         setDescription={setDescription}
+        blurHandler={blurHandler}
+        nameError={nameError}
+        nameDirty={nameDirty}
+        descriptionError={descriptionError}
+        descriptionDirty={descriptionDirty}
+        formValid={formValid}
+        descriptionHandler={descriptionHandler}
+        nameHandler={nameHandler}
       />
     </div>
   );
