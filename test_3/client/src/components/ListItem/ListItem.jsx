@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Popup from '../Popup/PopupInfo/PopupInfo';
 
 import './ListItem.css';
 import compl from '../../image/Compl.svg';

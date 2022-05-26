@@ -31,13 +31,15 @@ const Main = () => {
   );
   const [formValid, setFormValid] = useState(false);
 
+  //Реализация валидации
+
   useEffect(() => {
     if (nameError || descriptionError) {
       setFormValid(false);
     } else {
       setFormValid(true);
     }
-  });
+  }, [name, description]);
 
   const nameHandler = (e) => {
     setName(e.target.value);
