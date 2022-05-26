@@ -1,6 +1,7 @@
 import React from 'react';
 import Popup from '../Popup';
 
+import './PopupHeader.css';
 import '../Popup.css';
 
 const PopupHeader = ({
@@ -21,23 +22,34 @@ const PopupHeader = ({
   };
   return (
     <Popup isOpen={isOpen} changePopup={changePopup}>
-      <form>
-        {' '}
-        <input
-          value={name}
-          onChange={(e) => {
-            handleChangeName(e);
-          }}
-          type="text"
-        />
-        <input
-          value={description}
-          onChange={(e) => {
-            handleChangeDescription(e);
-          }}
-          type="text"
-        />
-        <button onClick={createTodo}>создать</button>
+      <form className="popup-header">
+        <div className="popup-input__input-box">
+          <p className="popup-header__input-name">Наименование задачи</p>
+          <input
+            type="text"
+            className="popup-header__input"
+            value={name}
+            onChange={(e) => {
+              handleChangeName(e);
+            }}
+            required
+          />
+        </div>
+        <div className="popup-input__input-box">
+          <p className="popup-header__input-name">Описание задачи</p>
+          <input
+            type="text"
+            className="popup-header__input"
+            value={description}
+            onChange={(e) => {
+              handleChangeDescription(e);
+            }}
+            required
+          />
+        </div>
+        <button onClick={createTodo} className="popup-header__button">
+          Создать
+        </button>
       </form>
     </Popup>
   );

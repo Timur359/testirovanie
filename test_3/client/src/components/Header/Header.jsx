@@ -9,7 +9,6 @@ import PopupHeader from '../Popup/PopupHeader/PopupHeader';
 const Header = ({
   inputSearch,
   setInputSearch,
-  changePopup,
   createTodo,
   name,
   setName,
@@ -18,7 +17,7 @@ const Header = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const openPopup = () => {
+  const changePopup = () => {
     setIsOpen(!isOpen);
   };
   //Получение данных из инпута
@@ -37,11 +36,13 @@ const Header = ({
           placeholder="Поиск"
         />
       </div>
-      <button onClick={openPopup}>Создать задачу</button>
+      <button onClick={changePopup} className="header__button">
+        Создать задачу
+      </button>
       <img src={avatar} className="header__avatar" alt="Аватар" />
       <PopupHeader
         isOpen={isOpen}
-        changePopup={openPopup}
+        changePopup={changePopup}
         createTodo={createTodo}
         name={name}
         setName={setName}

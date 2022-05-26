@@ -32,3 +32,10 @@
 .header__avatar {
     margin: 10px 10px 10px auto;
 }
+
+.header__button {
+    border: none;
+    cursor: pointer;
+    margin: 10px auto;
+    border: 2px solid #fa8072;
+}

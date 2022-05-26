@@ -1,0 +1,29 @@
+.popup-header {
+    width: 400px;
+}
+
+.popup-header__input-box {
+
+}
+
+.popup-header__input-name {
+    text-align: start;
+    margin: 0;
+    margin: 10px auto 10px 10px;
+}
+
+.popup-header__input {
+    width: 80%;
+    margin: 20px 0;
+    border: none;
+    border-bottom: 1px solid #E8E8E8;
+}
+
+.popup-header__button {
+    border: none;
+    background-color: black;
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin: 20px auto;
+}

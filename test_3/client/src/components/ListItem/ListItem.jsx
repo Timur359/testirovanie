@@ -43,7 +43,7 @@ const ListItem = ({
     }
   };
 
-  const handleClosePopup = () => {
+  const changePopup = () => {
     setIsOpen(!isOpen);
   };
   return (
@@ -51,7 +51,7 @@ const ListItem = ({
       <div
         className={isCompleted ? 'list-item__completed' : 'list-item__active'}
       >
-        <h2 className="list-item__title" onClick={() => setIsOpen(!isOpen)}>
+        <h2 className="list-item__title" onClick={changePopup}>
           {name}
         </h2>
         <button
@@ -68,7 +68,7 @@ const ListItem = ({
         <span className="list-item__date">{getFullDate}</span>
       </div>
       <PopupInfo
-        handleClosePopup={handleClosePopup}
+        changePopup={changePopup}
         handleCompleted={handleCompleted}
         name={name}
         description={description}
@@ -77,7 +77,6 @@ const ListItem = ({
         setIsCompleted={setIsCompleted}
         performance={perfomance}
         isOpen={isOpen}
-        setIsOpen={setIsOpen}
         getFullDate={getFullDate}
       />
     </>

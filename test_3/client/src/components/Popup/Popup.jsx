@@ -1,9 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Popup = ({ children, isOpen, setIsOpen }) => {
-  const changePopup = () => {
-    setIsOpen(!isOpen);
-  };
+const Popup = ({ children, isOpen, changePopup }) => {
   return (
     <div
       onClick={changePopup}

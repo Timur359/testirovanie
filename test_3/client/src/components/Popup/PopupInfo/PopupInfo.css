@@ -1,0 +1,42 @@
+.popup-info__box-info {
+    width: 75%;
+    height: 45px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.popup-info__title {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: start;
+    margin: 0;
+}
+
+.popup-info__paragraph {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19.36px;
+    margin: 0 20px 29px 8px;
+    height: 280px;
+    width: 300px;
+    overflow-y: auto;
+    border-top: 1px solid #CFCFCF;
+    text-align: start;
+}
+
+.popup-info__status {
+    background-size: 35px 35px;
+    margin: 10px;
+    width: 35px;
+    height: 35px;
+}
+
+.popup-info__date {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 12.1px;
+    text-align: start;
+    padding-right: 4px;
+}
