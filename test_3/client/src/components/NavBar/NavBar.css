@@ -20,6 +20,10 @@
     margin-top: 0;
 }
 
+.nav-bar__button:hover {
+    background-color: #E8E8E8;
+}
+
 .nav-bar__button_text {
     font-weight: 400;
     font-size: 22px;
