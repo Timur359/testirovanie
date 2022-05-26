@@ -8,9 +8,9 @@
 }
 
 .nav-bar__button {
-    background-color: #C4C4C4;
+    background-color: white;
     margin: 18px 0 14px 0;
-    border: none;
+    border: 1px solid #2BE080;
     height: 34px;
     cursor: pointer;
 }

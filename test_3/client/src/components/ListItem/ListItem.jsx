@@ -48,7 +48,9 @@ const ListItem = ({
   };
   return (
     <>
-      <div className="list-item">
+      <div
+        className={isCompleted ? 'list-item__completed' : 'list-item__active'}
+      >
         <h2 className="list-item__title" onClick={() => setIsOpen(!isOpen)}>
           {name}
         </h2>

@@ -1,6 +1,15 @@
-.list-item {
+.list-item__active {
     display: flex;
-    background-color: #D2D2D2;
+    background-color: #fa8072;
+    width: 90%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 15px 13px 13px 26px;
+}
+
+.list-item__completed {
+    display: flex;
+    background-color: #2BE080;
     width: 90%;
     justify-content: space-between;
     flex-wrap: wrap;
